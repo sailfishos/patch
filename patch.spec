@@ -15,6 +15,7 @@ URL:        http://www.gnu.org/software/patch/patch.html
 Source0:    ftp://ftp.gnu.org/gnu/patch/patch-%{version}.tar.xz
 Source100:  patch.yaml
 Patch0:     patch-2.5.4-sigsegv.patch
+Patch1:	    patch-aarch64.patch
 
 BuildRoot:  %{_tmppath}/%{name}-%{version}-build
 
@@ -34,6 +35,7 @@ applications.
 %prep
 %setup -q -n %{name}-%{version}
 %patch0 -p1
+%patch1 -p1
 # >> setup
 # << setup
 
