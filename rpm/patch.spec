@@ -6,8 +6,6 @@ Group:      Development/Tools
 License:    GPLv3
 URL:        http://www.gnu.org/software/patch/patch.html
 Source0:    ftp://ftp.gnu.org/gnu/patch/patch-%{version}.tar.xz
-# Do we need these still with the latest code?
-#Patch0:     patch-2.5.4-sigsegv.patch
 
 %description
 The patch program applies diff files to originals.  The diff command
@@ -21,7 +19,6 @@ applications.
 
 %prep
 %setup -q -n %{name}-%{version}/%{name}
-#%patch0 -p1
 
 %build
 CFLAGS="$RPM_OPT_FLAGS -D_GNU_SOURCE"
