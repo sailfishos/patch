@@ -6,6 +6,7 @@ Group:      Development/Tools
 License:    GPLv3
 URL:        http://www.gnu.org/software/patch/patch.html
 Source0:    ftp://ftp.gnu.org/gnu/patch/patch-%{version}.tar.xz
+BuildRequires: bison
 
 %description
 The patch program applies diff files to originals.  The diff command
