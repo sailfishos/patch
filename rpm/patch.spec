@@ -22,6 +22,9 @@ applications.
 %setup -q -n %{name}-%{version}/%{name}
 
 %build
+echo %{version} | cut -d '+' -f 1 > .tarball-version
+cp .tarball-version .version
+
 CFLAGS="$RPM_OPT_FLAGS -D_GNU_SOURCE"
 
 ./bootstrap --gnulib-srcdir=../gnulib/
