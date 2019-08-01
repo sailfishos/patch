@@ -1,0 +1,40 @@
+From dc67b5abc546376eae31a24cebcd864eaec674e5 Mon Sep 17 00:00:00 2001
+From: Niels Breet <niels.breet@jolla.com>
+Date: Thu, 1 Aug 2019 16:17:36 +0300
+Subject: [PATCH] Update find_backup_file_name calls because of a change in
+ gnulib
+
+---
+ src/patch.c | 2 +-
+ src/util.c  | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/patch.c b/src/patch.c
+index 3794319..73d140f 100644
+--- a/src/patch.c
++++ b/src/patch.c
+@@ -645,7 +645,7 @@ main (int argc, char **argv)
+ 		    const char *s = simple_backup_suffix;
+ 		    size_t len;
+ 		    simple_backup_suffix = ".rej";
+-		    rej = find_backup_file_name (outname, simple_backups);
++		    rej = find_backup_file_name (AT_FDCWD, outname, simple_backups);
+ 		    len = strlen (rej);
+ 		    if (rej[len - 1] == '~')
+ 		      rej[len - 1] = '#';
+diff --git a/src/util.c b/src/util.c
+index fb38307..392eff1 100644
+--- a/src/util.c
++++ b/src/util.c
+@@ -374,7 +374,7 @@ create_backup (char const *to, const struct stat *to_st, bool leave_original)
+ 	}
+       else
+ 	{
+-	  bakname = find_backup_file_name (to, backup_type);
++	  bakname = find_backup_file_name (AT_FDCWD, to, backup_type);
+ 	  if (!bakname)
+ 	    xalloc_die ();
+ 	}
+-- 
+1.9.1
+

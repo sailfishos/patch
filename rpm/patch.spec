@@ -1,11 +1,12 @@
 Name:       patch
 Summary:    The GNU patch command, for modifying/upgrading files
-Version:    2.7.5
-Release:    35
+Version:    2.7.6
+Release:    1
 Group:      Development/Tools
 License:    GPLv3
 URL:        http://www.gnu.org/software/patch/patch.html
 Source0:    ftp://ftp.gnu.org/gnu/patch/patch-%{version}.tar.xz
+Patch0:     0001-Update-find_backup_file_name-calls-because-of-a-chan.patch
 BuildRequires: bison
 
 %description
@@ -20,6 +21,7 @@ applications.
 
 %prep
 %setup -q -n %{name}-%{version}/%{name}
+%patch0 -p1
 
 %build
 echo %{version} | cut -d '+' -f 1 > .tarball-version
@@ -29,7 +31,7 @@ CFLAGS="$RPM_OPT_FLAGS -D_GNU_SOURCE"
 
 ./bootstrap --gnulib-srcdir=../gnulib/
 %configure
-make %{?jobs:-j%jobs}
+make %{?_smp_mflags}
 
 %install
 rm -rf %{buildroot}

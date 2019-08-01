@@ -1,6 +1,6 @@
 [submodule "patch"]
 	path = patch
-	url = git://git.sv.gnu.org/patch.git
+	url = https://git.sailfishos.org/mirror/patch.git
 [submodule "gnulib"]
 	path = gnulib
-	url = git://git.sv.gnu.org/gnulib.git
+	url = https://git.sailfishos.org/mirror/gnulib.git
