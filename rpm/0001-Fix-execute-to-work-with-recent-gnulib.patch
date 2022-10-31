@@ -1,0 +1,23 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Pekka Vuorela <pekka.vuorela@jolla.com>
+Date: Mon, 31 Oct 2022 16:28:40 +0200
+Subject: [PATCH] Fix execute() to work with recent gnulib
+
+Argv constness changed and an optional directory parameter added.
+---
+ src/pch.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/pch.c b/src/pch.c
+index cb54e03..a14f42f 100644
+--- a/src/pch.c
++++ b/src/pch.c
+@@ -2482,7 +2482,7 @@ do_ed_script (char const *inname, char const *outname,
+     ed_argv[1] = "-";
+     ed_argv[2] = outname;
+     ed_argv[3] = (char  *) NULL;
+-    status = execute (editor_program, editor_program, (char **)ed_argv,
++    status = execute (editor_program, editor_program, ed_argv, NULL,
+ 		      false, false, false, false, true, false, NULL);
+     if (status)
+       fatal ("%s FAILED", editor_program);
